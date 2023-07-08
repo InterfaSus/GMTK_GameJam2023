@@ -14,11 +14,6 @@ public class ProgressBar : MonoBehaviour
     private float progress = 0.0f;
     private bool loadingStarted = false;
 
-    private void Start()
-    {
-        startButton.onClick.AddListener(StartLoading);
-    }
-
     private void Update()
     {
         if (loadingStarted && progress < 1.0f)
@@ -38,8 +33,9 @@ public class ProgressBar : MonoBehaviour
         }
     }
 
-    private void StartLoading()
+    public void StartLoading()
     {
+        Debug.Log(2);
         progress = 0.0f; // Reinicia el progreso
         loadingStarted = true; // Inicia la carga
     }
