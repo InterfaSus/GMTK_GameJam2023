@@ -80,6 +80,8 @@ public class MailManager : MonoBehaviour
             mail.Category = MailCategory.Correct;
         }
         else {
+            Browser.instance.FocusTab("error");
+            Browser.instance.toggleBlocks();
             mail.Category = MailCategory.Incorrect;
         }
 
