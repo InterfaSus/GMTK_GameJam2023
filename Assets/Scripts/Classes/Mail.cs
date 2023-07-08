@@ -37,14 +37,15 @@ public class Mail {
         StoreRating = storeRating;
         Content = content;
         Category = MailCategory.Inbox;
+        Subgenres = subgenres;
 
         float accRatio = (float)storeRating / 5f;
         float lowerBound = accRatio - 0.2f;
 
-        Ratings.Add("SaqueCritic", ((int)System.Math.Round(UnityEngine.Random.Range(lowerBound, accRatio) * 100, 0), 100));
-        Ratings.Add("PDPE", ((int)System.Math.Round(UnityEngine.Random.Range(lowerBound, accRatio) * 60, 0), 60));
-        Ratings.Add("Game Location", ((int)System.Math.Round(UnityEngine.Random.Range(lowerBound, accRatio) * 10, 0), 10));
-        Ratings.Add("Green Mesa", ((int)System.Math.Round(UnityEngine.Random.Range(lowerBound, accRatio) * 50, 0), 50));
+        Ratings.Add("SaqueCritic", ((int)System.Math.Round(UnityEngine.Random.Range(lowerBound, accRatio) * Universe.critics["SaqueCritic"], 0),  Universe.critics["SaqueCritic"]));
+        Ratings.Add("PDPE", ((int)System.Math.Round(UnityEngine.Random.Range(lowerBound, accRatio) * Universe.critics["PDPE"], 0), Universe.critics["PDPE"]));
+        Ratings.Add("Game Location", ((int)System.Math.Round(UnityEngine.Random.Range(lowerBound, accRatio) * Universe.critics["Game Location"], 0), Universe.critics["Game Location"]));
+        Ratings.Add("Green Mesa", ((int)System.Math.Round(UnityEngine.Random.Range(lowerBound, accRatio) * Universe.critics["Green Mesa"], 0), Universe.critics["Green Mesa"]));
     }
 
     public static Mail GenerateMail() {
@@ -57,7 +58,7 @@ public class Mail {
         string genre = uGenresCopy[genreIndex];
         
         uGenresCopy = uGenresCopy.Where((val, idx) => idx != genreIndex).ToArray();
-        int subgenresAmount = Random.Range(2, 4);
+        int subgenresAmount = Random.Range(2, 5);
         string[] subgenres = new string[subgenresAmount];
 
         for (int i = 0; i < subgenresAmount; i++) {

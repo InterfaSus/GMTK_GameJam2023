@@ -31,5 +31,17 @@ public static class Rules {
 
         return !genres.Any(genre => mail.Genre == genre);
     }
+
+    // Given a list of subgenres, checks if the mail is from one of them
+    public static bool SubgenreValid(Mail mail, string[] subgenres) {
+
+        return subgenres.Any(subgenre => mail.Subgenres.Contains(subgenre));
+    }
+
+    // Given a critic and a threshold, check if its rating is at least the threshold
+    public static bool CriticsRating(Mail mail, string critic, int threshold) {
+
+        return mail.Ratings[critic].Item1 >= threshold;
+    }
 }
 

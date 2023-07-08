@@ -9,6 +9,8 @@ public class FullMailObject : MonoBehaviour {
     public TextMeshProUGUI fromText;
     public TextMeshProUGUI genreText;
     public TextMeshProUGUI[] ratingsText;
+    public TextMeshProUGUI subgenresText;
+    public TextMeshProUGUI starRating;
 
     MailManager mailManager;
     Mail mail;
@@ -27,6 +29,7 @@ public class FullMailObject : MonoBehaviour {
 
         fromText.text = mail.From;
         genreText.text = "Genre: " + mail.Genre;
+        starRating.text = mail.StoreRating.ToString() + "/5";
 
         int i = 0;
         foreach (var item in mail.Ratings) {
@@ -34,6 +37,8 @@ public class FullMailObject : MonoBehaviour {
             ratingsText[i].text = item.Key + ": " + item.Value.Item1 + "/" + item.Value.Item2 + "\n";
             i++;
         }
+
+        subgenresText.text = string.Join(", ", mail.Subgenres);
     }
 
     public void Respond(bool accepted) {
