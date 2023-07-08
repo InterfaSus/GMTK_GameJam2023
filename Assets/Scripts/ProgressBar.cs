@@ -26,16 +26,16 @@ public class ProgressBar : MonoBehaviour
 
         if(progress >= 1.0f)
         {
+            progress = 0.0f;
+            loadingStarted = false;
             Browser.instance.FocusTab("ruleList");
+            rulesWindow.GetComponentInChildren<RulesList>().InitRuleList();
             loadWindow.SetActive(false);
-
-            Debug.Log("Carga completada");
         }
     }
 
     public void StartLoading()
     {
-        Debug.Log(2);
         progress = 0.0f; // Reinicia el progreso
         loadingStarted = true; // Inicia la carga
     }

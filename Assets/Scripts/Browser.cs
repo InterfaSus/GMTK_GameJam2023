@@ -25,9 +25,6 @@ public class Browser : MonoBehaviour
         pages[0].gameObject.SetActive(false);
 
         ActiveCurrently = new bool[pages.Count()]; 
-
-        //Debug all elements on pages
-        pages.ForEach(p => Debug.Log(p.pageName));
     }
 
     public void FocusTab(string name) {
