@@ -1,4 +1,4 @@
-using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,12 +24,12 @@ public class Mail {
     public string[] Subgenres { get; private set; }
     public int StoreRating { get; private set; }
     public string Content { get; private set; }
-    public bool IsValid { get; private set; }
+    public bool IsValid;
     public MailCategory Category;
 
     public Dictionary<string, (int, int)> Ratings = new Dictionary<string, (int, int)>();
 
-    public Mail(string name, string from, string genre, string[] subgenres, int storeRating, string content, bool isCorrect) {
+    public Mail(string name, string from, string genre, string[] subgenres, int storeRating, string content) {
 
         Name = name;
         From = from;
@@ -37,14 +37,40 @@ public class Mail {
         StoreRating = storeRating;
         Content = content;
         Category = MailCategory.Inbox;
-        IsValid = isCorrect;
 
         float accRatio = (float)storeRating / 5f;
         float lowerBound = accRatio - 0.2f;
 
-        Ratings.Add("SaqueCritic", ((int)Math.Round(UnityEngine.Random.Range(lowerBound, accRatio) * 100, 0), 100));
-        Ratings.Add("PDPE", ((int)Math.Round(UnityEngine.Random.Range(lowerBound, accRatio) * 60, 0), 60));
-        Ratings.Add("Game Location", ((int)Math.Round(UnityEngine.Random.Range(lowerBound, accRatio) * 10, 0), 10));
-        Ratings.Add("Green Mesa", ((int)Math.Round(UnityEngine.Random.Range(lowerBound, accRatio) * 50, 0), 50));
+        Ratings.Add("SaqueCritic", ((int)System.Math.Round(UnityEngine.Random.Range(lowerBound, accRatio) * 100, 0), 100));
+        Ratings.Add("PDPE", ((int)System.Math.Round(UnityEngine.Random.Range(lowerBound, accRatio) * 60, 0), 60));
+        Ratings.Add("Game Location", ((int)System.Math.Round(UnityEngine.Random.Range(lowerBound, accRatio) * 10, 0), 10));
+        Ratings.Add("Green Mesa", ((int)System.Math.Round(UnityEngine.Random.Range(lowerBound, accRatio) * 50, 0), 50));
+    }
+
+    public static Mail GenerateMail() {
+
+        string title = "New Mail";
+        string from = Universe.usernames[Random.Range(0, Universe.usernames.Length)] + "@" + Universe.domains[Random.Range(0, Universe.domains.Length)];
+
+        string[] uGenresCopy = (string[])Universe.genres.Clone();
+        int genreIndex = Random.Range(0, Universe.genres.Length);
+        string genre = uGenresCopy[genreIndex];
+        
+        uGenresCopy = uGenresCopy.Where((val, idx) => idx != genreIndex).ToArray();
+        int subgenresAmount = Random.Range(2, 4);
+        string[] subgenres = new string[subgenresAmount];
+
+        for (int i = 0; i < subgenresAmount; i++) {
+            int index = Random.Range(0, uGenresCopy.Length);
+            subgenres[i] = uGenresCopy[index];
+            uGenresCopy = uGenresCopy.Where((val, idx) => idx != index).ToArray();
+        }
+
+        int ratingRange = Random.Range(1, 101);
+        int storeRating = ratingRange > 80 ? 5 : ratingRange > 40 ? 4 : ratingRange > 15 ? 3 : 2;
+        int rating = Random.Range(1, 6);
+        string description = "New Description";
+
+        return new Mail(title, from, genre, subgenres, rating, description);
     }
 }
