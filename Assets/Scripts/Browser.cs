@@ -34,7 +34,7 @@ public class Browser : MonoBehaviour
 
         int index = pages.FindIndex(p => p.pageName == name);
 
-        //Si no esta activa la pagina, activala
+        //Si no esta desactiva la pagina, activala
         if (!ActiveCurrently[index]) {
             pages[index].gameObject.SetActive(true);
             ActiveCurrently[index] = true;
