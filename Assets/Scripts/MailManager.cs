@@ -62,6 +62,7 @@ public class MailManager : MonoBehaviour
     public void ForButtonUpdateDisplayList(int index) {
 
         UpdateDisplayList((MailCategory)index);
+        ButtonManager.instance.SetActiveCategoryButton(index);
     }
 
     public void UpdateCategoriesNumbers() {
