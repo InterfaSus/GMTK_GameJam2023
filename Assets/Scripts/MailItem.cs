@@ -38,6 +38,9 @@ public class MailItem : MonoBehaviour
 
     public void Respond(bool accepted) {
 
+        var fullMailObject = mailManager.fullMailObject;
+        fullMailObject.SetActive(false);
+
         mailManager.Respond(instanceMail, accepted);
     }
 
