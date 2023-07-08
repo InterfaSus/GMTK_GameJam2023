@@ -16,8 +16,25 @@ public class Browser : MonoBehaviour
         pages[0].gameObject.SetActive(true);
     }
 
+    private bool ActiveCurrently = false; 
+
     public void FocusTab(string name) {
 
-        pages.ForEach(p => p.gameObject.SetActive(p.pageName == name));
+        if (!ActiveCurrently) {
+            pages.ForEach(p => p.gameObject.SetActive(p.pageName == name));
+            ActiveCurrently = true;
+            Debug.Log("Activo");
+        }
+
+        else {
+            foreach (var p in pages)
+            {
+                if (p.pageName == name) p.gameObject.SetActive(false);
+            }
+            ActiveCurrently = false;
+
+            Debug.Log("Desactivo");
+        } 
+
     }
 }
