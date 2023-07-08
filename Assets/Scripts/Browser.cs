@@ -23,7 +23,6 @@ public class Browser : MonoBehaviour
         if (!ActiveCurrently) {
             pages.ForEach(p => p.gameObject.SetActive(p.pageName == name));
             ActiveCurrently = true;
-            Debug.Log("Activo");
         }
 
         else {
@@ -33,7 +32,6 @@ public class Browser : MonoBehaviour
             }
             ActiveCurrently = false;
 
-            Debug.Log("Desactivo");
         } 
 
     }
