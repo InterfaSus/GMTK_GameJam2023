@@ -5,34 +5,53 @@ using UnityEngine;
 
 public class Browser : MonoBehaviour
 {
-    
+    public static Browser instance;
+
     public List<Page> pages;
+    public GameObject[] blockers;
+    private bool[] ActiveCurrently;
+
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Start() {
 
         pages = new List<Page>(GetComponentsInChildren<Page>(includeInactive: true));
         
         pages.ForEach(p => p.gameObject.SetActive(false));
-        pages[0].gameObject.SetActive(true);
-    }
+        pages[0].gameObject.SetActive(false);
 
-    private bool ActiveCurrently = false; 
+        ActiveCurrently = new bool[pages.Count()]; 
+
+        //Debug all elements on pages
+        pages.ForEach(p => Debug.Log(p.pageName));
+    }
 
     public void FocusTab(string name) {
 
-        if (!ActiveCurrently) {
-            pages.ForEach(p => p.gameObject.SetActive(p.pageName == name));
-            ActiveCurrently = true;
+        int index = pages.FindIndex(p => p.pageName == name);
+
+        //Si no esta desactiva la pagina, activala
+        if (!ActiveCurrently[index]) {
+            pages[index].gameObject.SetActive(true);
+            ActiveCurrently[index] = true;
         }
 
+        //Si esta activa, desactivala
         else {
-            foreach (var p in pages)
-            {
-                if (p.pageName == name) p.gameObject.SetActive(false);
-            }
-            ActiveCurrently = false;
-
+            pages[index].gameObject.SetActive(false);
+            ActiveCurrently[index] = false;
         } 
+    }
 
+    public void toggleBlocks()
+    {
+        foreach (GameObject blocker in blockers)
+        {
+            blocker.SetActive(!blocker.activeSelf);
+        }
     }
 }
