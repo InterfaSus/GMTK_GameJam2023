@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class MailItem : MonoBehaviour
@@ -25,9 +26,9 @@ public class MailItem : MonoBehaviour
 
         instanceMail = mail;
 
-        authorText.text = "FROM: " + mail.Author;
+        authorText.text = mail.From;
         genreText.text = "GENRE: " + mail.Genre;
-        ratingText.text = mail.Rating.ToString() + "/5";
+        ratingText.text = mail.StoreRating.ToString() + "/5";
 
         if (mail.Category == MailCategory.Correct || mail.Category == MailCategory.Incorrect) {
             acceptButton.gameObject.SetActive(false);
@@ -37,16 +38,14 @@ public class MailItem : MonoBehaviour
 
     public void Respond(bool accepted) {
 
-        if (accepted == instanceMail.IsValid) {
+        mailManager.Respond(instanceMail, accepted);
+    }
 
-            FindObjectOfType<ScoreManager>().UpdateScore(10);
-            instanceMail.Category = MailCategory.Correct;
-        }
-        else {
-            instanceMail.Category = MailCategory.Incorrect;
-        }
+    public void ShowMailInfo() {
 
-        mailManager.UpdateCategoriesNumbers();
-        mailManager.UpdateDisplayList(mailManager.currentCategory);
+        var fullMailObject = mailManager.fullMailObject;
+        
+        fullMailObject.gameObject.SetActive(true);
+        fullMailObject.GetComponent<FullMailObject>().InitFullMail(instanceMail);
     }
 }
