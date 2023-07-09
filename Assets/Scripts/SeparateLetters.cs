@@ -15,7 +15,7 @@ public class SeparateLetters : MonoBehaviour
 
     public void InitializeLetters(string text) {
         
-        textComponent.text = text;
+        textComponent.text = text.Replace(" ", "  ");
 
         letterTransforms = new Transform[textComponent.text.Length];
         originalPositions = new Vector3[textComponent.text.Length];
@@ -37,6 +37,7 @@ public class SeparateLetters : MonoBehaviour
             letterText.color = textComponent.color;
             letterText.text = textComponent.text[i].ToString();
             letterText.alignment = TextAlignmentOptions.Center;
+            // if (letterText.text == " ") letterText.preferredWidt
 
             rectTransform.anchoredPosition = GetLetterPosition(i);
 
