@@ -10,12 +10,6 @@ public class ScreensManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-
-        //print all pages names
-        foreach (Page page in pages)
-        {
-            Debug.Log(page.name);
-        }
     }
 
     public void SetActive(string name)
@@ -25,7 +19,6 @@ public class ScreensManager : MonoBehaviour
             if (page.pageName == name)
             {
                 page.gameObject.SetActive(true);
-                Debug.Log(name + " is active");
             }
             else
             {
