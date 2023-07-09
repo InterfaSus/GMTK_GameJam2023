@@ -10,6 +10,8 @@ public class ProgressBar : MonoBehaviour
     public Button startButton;
     public float baseLoadTime = 10.0f;
 
+    public AudioSource Fan;
+
 
     private float progress = 0.0f;
     private bool loadingStarted = false;
@@ -26,6 +28,7 @@ public class ProgressBar : MonoBehaviour
 
         if(progress >= 1.0f)
         {
+            Fan.Stop();
             progress = 0.0f;
             loadingStarted = false;
             Browser.instance.FocusTab("ruleList");
@@ -38,5 +41,6 @@ public class ProgressBar : MonoBehaviour
     {
         progress = 0.0f; // Reinicia el progreso
         loadingStarted = true; // Inicia la carga
+        Fan.Play();
     }
 }

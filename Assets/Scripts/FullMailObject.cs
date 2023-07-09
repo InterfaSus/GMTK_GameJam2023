@@ -13,6 +13,8 @@ public class FullMailObject : MonoBehaviour {
     public TextMeshProUGUI starRating;
     public TextMeshProUGUI description;
 
+    public AudioSource click;
+
     MailManager mailManager;
     Mail mail;
 
@@ -46,6 +48,7 @@ public class FullMailObject : MonoBehaviour {
 
     public void Respond(bool accepted) {
 
+        click.Play();
         mailManager.Respond(mail, accepted);
         gameObject.SetActive(false);
     }

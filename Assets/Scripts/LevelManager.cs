@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
 {
     
     public Image blackFade;
+    public AudioSource NewDay;
 
     void Start() {
 
@@ -24,6 +25,10 @@ public class LevelManager : MonoBehaviour
             blackFade.color = new Color(0, 0, 0, alpha);
             yield return null;
         }
+
+        if(alpha <= 0) NewDay.Stop();
+
+        NewDay.Play();
     }
 
     IEnumerator FadeToBlack(int scene) {

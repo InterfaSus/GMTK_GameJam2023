@@ -6,6 +6,10 @@ public class ScreensManager : MonoBehaviour
 {
     public static ScreensManager instance;
     public List<Page> pages;
+    public AudioSource GameOver;
+    public AudioSource Shop;
+    public AudioSource Victory;
+
 
     void Awake()
     {
@@ -14,6 +18,10 @@ public class ScreensManager : MonoBehaviour
 
     public void SetActive(string name)
     {
+        if(name == "shop") Shop.Play();
+        if(name == "game_over") GameOver.Play();
+        if(name == "victory") Victory.Play();
+
         foreach (Page page in pages)
         {
             if (page.pageName == name)
