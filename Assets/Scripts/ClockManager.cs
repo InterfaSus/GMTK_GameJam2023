@@ -23,7 +23,6 @@ public class ClockManager : MonoBehaviour
             currentTime += Time.deltaTime * timeSpeed/100;
             actualTime = currentTime + startTime;
 
-            Debug.Log(actualTime);
 
             DateTime timeText = DateTime.Today.AddHours(actualTime);
             string formatHour = timeText.ToString("h:mm tt");
@@ -33,9 +32,9 @@ public class ClockManager : MonoBehaviour
         else
         {
             if(ScoreManager.instance.IsGoalMet())
-                ScreensManager.instance.SetActive("Shop");
+                ScreensManager.instance.SetActive("shop");
             else
-                ScreensManager.instance.SetActive("GameOver");
+                ScreensManager.instance.SetActive("game_over");
         }
     }
 }
