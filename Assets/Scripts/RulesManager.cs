@@ -79,13 +79,13 @@ public class RulesManager : MonoBehaviour
 
         if (isAcceptGenre) {
 
-            ruleMsg = $"Main genre MUST be: {string.Join(", ", genres)}";
+            ruleMsg = $"Main genre must be: {string.Join(", ", genres)}";
             rules.Add((ruleMsg, (mail) => {
                 return Rules.GenreValid(mail, genres);
             }));
         }
         else {
-            ruleMsg = $"Main genre CAN'T be: {string.Join(", ", genres)}";
+            ruleMsg = $"Main genre can't be: {string.Join(", ", genres)}";
             rules.Add((ruleMsg, (mail) => {
                 return Rules.GenreNeither(mail, genres);
             }));
@@ -102,7 +102,7 @@ public class RulesManager : MonoBehaviour
             subgenresCopy = subgenresCopy.Where((val, idx) => idx != index).ToArray();
         }
 
-        ruleMsg = $"MUST HAVE at least one of these SUBgenres: {string.Join(", ", subgenres)}";
+        ruleMsg = $"Must one of these subgenres: {string.Join(", ", subgenres)}";
         rules.Add((ruleMsg, (mail) => {
             return Rules.SubgenreValid(mail, subgenres);
         }));
@@ -112,7 +112,7 @@ public class RulesManager : MonoBehaviour
 
         int maxVal = Universe.critics.ElementAt(indexCritic).Value;
         int limit = UnityEngine.Random.Range(maxVal / 2, 3 * maxVal / 4 + 1);
-        ruleMsg = $"MUST HAVE at least {limit} from {Universe.critics.ElementAt(indexCritic).Key}";
+        ruleMsg = $"At least {limit} points from {Universe.critics.ElementAt(indexCritic).Key}";
         rules.Add((ruleMsg, (mail) => {
             return Rules.CriticsRating(mail, Universe.critics.ElementAt(indexCritic).Key, limit);
         }));
