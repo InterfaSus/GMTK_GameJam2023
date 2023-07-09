@@ -6,7 +6,7 @@ using TMPro;
 public class SeparateLetters : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
-    public float separationDelay = 30f;
+    public float separationDelay = 3.0f;
 
     private Transform[] letterTransforms;
     private Vector3[] originalPositions;
@@ -68,7 +68,7 @@ public class SeparateLetters : MonoBehaviour
         if (finishedLoading) {
             for (int i = 0; i < letterTransforms.Length; i++) {
                 
-                letterTransforms[i].position = Vector3.Lerp(letterTransforms[i].position, letterTransforms[i].position + directions[i], 1.0f / separationDelay * Time.deltaTime * 0.5f);
+                letterTransforms[i].position = Vector3.Lerp(letterTransforms[i].position, letterTransforms[i].position + directions[i], 1.0f / separationDelay * Time.deltaTime * 0.5f * (Persistents.upgradeLevels[1] + 1));
             }
         }
     }

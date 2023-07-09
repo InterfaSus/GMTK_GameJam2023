@@ -11,21 +11,29 @@ public class RulesManager : MonoBehaviour
     
     public GameObject rulesPanel;
 
-    public List<(string, Func<Mail, bool>)> rules;
+    public List<(string, Func<Mail, (bool, string)>)> rules;
 
     void Start() {
         
         GenerateRandomRules(Persistents.RulesAmount[Persistents.Level - 1]);
     }
 
-    public bool CheckRules(Mail mail) {
+    public (bool, (string, bool)[]) CheckRules(Mail mail) {
         
-        return rules.All(rule => rule.Item2(mail));
+        List<(string, bool)> rulesCorrectness = new List<(string, bool)>();
+
+        foreach (var rule in rules) {
+            
+            var (result, ruleName) = rule.Item2(mail);
+            rulesCorrectness.Add((ruleName, result));
+        }
+
+        return (rulesCorrectness.All(x => x.Item2), rulesCorrectness.ToArray());
     }
 
     public void GenerateRandomRules(int amount) {
 
-        rules = new List<(string, Func<Mail, bool>)>();
+        rules = new List<(string, Func<Mail, (bool, string)>)>();
 
         // Spam rule
         string ruleMsg = $"Reject everything with spam in the description";

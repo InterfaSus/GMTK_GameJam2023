@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class TutorialManager : MonoBehaviour
 {
 
+    public GameObject tutorialPanel;
     public List<GameObject> tutorialObjects; // Lista de objetos asociados en el tutorial
     public List<string> tutorialTexts; // Lista de texto asociado a cada índice
     public TextMeshProUGUI tutorialText; // Objeto de texto en la escena para mostrar el texto
@@ -13,6 +15,11 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
+
+        if (Persistents.DidTutorial) {
+            tutorialPanel.SetActive(false);
+        }
+
         // Agrega los primeros 3 elementos a la lista de texto
         tutorialTexts.Add("Hello hello! Down here, I'll guide you through the process of filtering the submissions of the Jam.");
         tutorialTexts.Add("Click here! This is the Mails Window, all mails are gonna appear there, and that's your work. If you do a good work all mails are going to be send to the Correct. Tab. If you manage to reach your goald dont stop! You can buy upgrades with those points ;)");
@@ -39,9 +46,10 @@ public class TutorialManager : MonoBehaviour
 
     public void GoToNext()
     {
-        if(currentIndex == 10)
+        if(currentIndex == 9)
         {
-            //Pasar al siguiente nivel
+            Persistents.DidTutorial = true;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
 

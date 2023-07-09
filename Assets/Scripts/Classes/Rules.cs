@@ -3,51 +3,51 @@ using System.Linq;
 public static class Rules {
 
     // Checks if rating is at least some value
-    public static bool Rating(Mail mail, int threshold) {
+    public static (bool, string) Rating(Mail mail, int threshold) {
 
-        return mail.StoreRating >= threshold;
+        return (mail.StoreRating >= threshold, "Rating");
     }
 
     // Given a list of domains, checks if the mail is from one of them
-    public static bool FromValid(Mail mail, string[] domains) {
+    public static (bool, string) FromValid(Mail mail, string[] domains) {
 
-        return domains.Any(domain => mail.From.EndsWith(domain));
+        return (domains.Any(domain => mail.From.EndsWith(domain)), "Email domain");
     }
 
     // Given a list of domains, checks if the mail is not from one of them
-    public static bool FromNeither(Mail mail, string[] domains) {
+    public static (bool, string) FromNeither(Mail mail, string[] domains) {
             
-        return !domains.Any(domain => mail.From.EndsWith(domain));
+        return (!domains.Any(domain => mail.From.EndsWith(domain)), "Email domain");
     }
 
     // Given a list of genres, checks if the mail is from one of them
-    public static bool GenreValid(Mail mail, string[] genres) {
+    public static (bool, string) GenreValid(Mail mail, string[] genres) {
 
-        return genres.Any(genre => mail.Genre == genre);
+        return (genres.Any(genre => mail.Genre == genre), "Genre");
     }
 
     // Given a list of genres, checks if the mail is not from one of them
-    public static bool GenreNeither(Mail mail, string[] genres) {
+    public static (bool, string) GenreNeither(Mail mail, string[] genres) {
 
-        return !genres.Any(genre => mail.Genre == genre);
+        return (!genres.Any(genre => mail.Genre == genre), "Genre");
     }
 
     // Given a list of subgenres, checks if the mail is from one of them
-    public static bool SubgenreValid(Mail mail, string[] subgenres) {
+    public static (bool, string) SubgenreValid(Mail mail, string[] subgenres) {
 
-        return subgenres.Any(subgenre => mail.Subgenres.Contains(subgenre));
+        return (subgenres.Any(subgenre => mail.Subgenres.Contains(subgenre)), "Subgenre");
     }
 
     // Given a critic and a threshold, check if its rating is at least the threshold
-    public static bool CriticsRating(Mail mail, string critic, int threshold) {
+    public static (bool, string) CriticsRating(Mail mail, string critic, int threshold) {
 
-        return mail.Ratings[critic].Item1 >= threshold;
+        return (mail.Ratings[critic].Item1 >= threshold, "Critic");
     }
 
     // Returns false if the mail is spam
-    public static bool NotSpam(Mail mail) {
+    public static (bool, string) NotSpam(Mail mail) {
 
-        return !mail.IsSpam;
+        return (!mail.IsSpam, "Spam");
     }
 }
 

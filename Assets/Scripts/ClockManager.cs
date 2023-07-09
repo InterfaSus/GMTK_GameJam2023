@@ -9,7 +9,7 @@ public class ClockManager : MonoBehaviour
 {
     public float startTime = 7.5f; //7:30 AM
     public float endTime = 16; //4:00 PM
-    public float timeSpeed = 1;
+    public float timeSpeed = 3.0f;
     public TextMeshProUGUI clock;
 
     private float actualTime;
@@ -23,7 +23,7 @@ public class ClockManager : MonoBehaviour
 
         if(actualTime <= endTime)
         {
-            currentTime += Time.deltaTime * timeSpeed/100;
+            currentTime += Time.deltaTime * (timeSpeed - Persistents.upgradeLevels[3] / 2) / 100.0f;
             actualTime = currentTime + startTime;
 
 
