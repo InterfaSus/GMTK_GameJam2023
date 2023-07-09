@@ -19,6 +19,7 @@ public class ScreensManager : MonoBehaviour
             if (page.pageName == name)
             {
                 page.gameObject.SetActive(true);
+                if (page.pageName == "shop") FindObjectOfType<ShopManager>().UpdateShop();
             }
             else
             {
