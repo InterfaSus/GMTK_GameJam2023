@@ -23,19 +23,19 @@ public class Mail {
     public string Genre { get; private set; }
     public string[] Subgenres { get; private set; }
     public int StoreRating { get; private set; }
-    public string Content { get; private set; }
+    public string Description { get; private set; }
     public bool IsValid;
     public MailCategory Category;
 
     public Dictionary<string, (int, int)> Ratings = new Dictionary<string, (int, int)>();
 
-    public Mail(string name, string from, string genre, string[] subgenres, int storeRating, string content) {
+    public Mail(string name, string from, string genre, string[] subgenres, int storeRating, string description) {
 
         Name = name;
         From = from;
         Genre = genre;
         StoreRating = storeRating;
-        Content = content;
+        Description = description;
         Category = MailCategory.Inbox;
         Subgenres = subgenres;
 
@@ -70,7 +70,7 @@ public class Mail {
         int ratingRange = Random.Range(1, 101);
         int storeRating = ratingRange > 80 ? 5 : ratingRange > 40 ? 4 : ratingRange > 15 ? 3 : 2;
         int rating = Random.Range(1, 6);
-        string description = "New Description";
+        string description = Universe.descriptions[genre][Random.Range(0, Universe.descriptions[genre].Length)];
 
         return new Mail(title, from, genre, subgenres, rating, description);
     }
