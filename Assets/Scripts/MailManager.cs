@@ -13,6 +13,9 @@ public class MailManager : MonoBehaviour
     public GameObject fullMailObject;
     public MailCategory currentCategory { get; private set; }
 
+    public int correctScore = 10;
+    public int incorrectScore = -3;
+
     List<Mail> mails;
     TextMeshProUGUI[] categoriesNumbers;
 
@@ -67,12 +70,16 @@ public class MailManager : MonoBehaviour
 
         if (accepted == mail.IsValid) {
 
-            GetComponent<ScoreManager>().UpdateScore(10);
+            GetComponent<ScoreManager>().UpdateScore(correctScore);
             mail.Category = MailCategory.Correct;
         }
         else {
+
+            GetComponent<ScoreManager>().UpdateScore(incorrectScore);
+
             Browser.instance.FocusTab("error");
             Browser.instance.toggleBlocks();
+
             mail.Category = MailCategory.Incorrect;
         }
 
