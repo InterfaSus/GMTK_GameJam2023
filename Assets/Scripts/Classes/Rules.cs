@@ -43,5 +43,11 @@ public static class Rules {
 
         return mail.Ratings[critic].Item1 >= threshold;
     }
+
+    // Returns false if the mail is spam
+    public static bool NotSpam(Mail mail) {
+
+        return !mail.IsSpam;
+    }
 }
 

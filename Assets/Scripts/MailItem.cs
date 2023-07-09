@@ -30,7 +30,7 @@ public class MailItem : MonoBehaviour
         genreText.text = "GENRE: " + mail.Genre;
         ratingText.text = mail.StoreRating.ToString() + "/5";
 
-        if (mail.Category == MailCategory.Correct || mail.Category == MailCategory.Incorrect) {
+        if (mail.Category != MailCategory.Inbox) {
             acceptButton.gameObject.SetActive(false);
             rejectButton.gameObject.SetActive(false);
         }

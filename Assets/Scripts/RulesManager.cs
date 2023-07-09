@@ -31,14 +31,19 @@ public class RulesManager : MonoBehaviour
 
         rules = new List<(string, Func<Mail, bool>)>();
 
+        // Spam rule
+        string ruleMsg = $"Reject everything with spam in the description";
+        rules.Add((ruleMsg, (mail) => {
+            return Rules.NotSpam(mail);
+        }));
+
         // Rating rule
         int threshold = UnityEngine.Random.Range(3, 5);
-        string ruleMsg = $"Stars rating must be at least {threshold}";
+        ruleMsg = $"Stars rating must be at least {threshold}";
 
         rules.Add((ruleMsg, (mail) => {
             return Rules.Rating(mail, threshold);
         }));
-
 
         // From rule
         bool isAcceptDomain = UnityEngine.Random.Range(0, 2) == 0;

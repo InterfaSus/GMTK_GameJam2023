@@ -24,9 +24,10 @@ public class FullMailObject : MonoBehaviour {
     public void InitFullMail(Mail mail) {
 
         this.mail = mail;
-        if (mail.Category == MailCategory.Correct || mail.Category == MailCategory.Incorrect) {
+        if (mail.Category != MailCategory.Inbox) {
             buttons.SetActive(false);
         }
+        else buttons.SetActive(true);
 
         fromText.text = mail.From;
         genreText.text = "Genre: " + mail.Genre;

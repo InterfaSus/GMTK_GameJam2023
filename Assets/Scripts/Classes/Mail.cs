@@ -24,12 +24,13 @@ public class Mail {
     public string[] Subgenres { get; private set; }
     public int StoreRating { get; private set; }
     public string Description { get; private set; }
+    public bool IsSpam { get; private set; }
     public bool IsValid;
     public MailCategory Category;
 
     public Dictionary<string, (int, int)> Ratings = new Dictionary<string, (int, int)>();
 
-    public Mail(string name, string from, string genre, string[] subgenres, int storeRating, string description) {
+    public Mail(string name, string from, string genre, string[] subgenres, int storeRating, string description, bool spam) {
 
         Name = name;
         From = from;
@@ -38,6 +39,7 @@ public class Mail {
         Description = description;
         Category = MailCategory.Inbox;
         Subgenres = subgenres;
+        IsSpam = spam;
 
         float accRatio = (float)storeRating / 5f;
         float lowerBound = accRatio - 0.2f;
@@ -72,6 +74,13 @@ public class Mail {
         int rating = Random.Range(1, 6);
         string description = Universe.descriptions[genre][Random.Range(0, Universe.descriptions[genre].Length)];
 
-        return new Mail(title, from, genre, subgenres, rating, description);
+        bool spam = false;
+        if (Random.Range(0, 100) >= 85) {
+            
+            spam = true;
+            description = Universe.spamDescriptions[Random.Range(0, Universe.spamDescriptions.Length)];
+        }
+
+        return new Mail(title, from, genre, subgenres, rating, description, spam);
     }
 }
