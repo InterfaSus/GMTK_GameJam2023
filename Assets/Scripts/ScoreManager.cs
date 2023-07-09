@@ -22,6 +22,7 @@ public class ScoreManager : MonoBehaviour
     public void UpdateScore(int amount) {
 
         currentScore += amount;
+        if (currentScore < 0) currentScore = 0;
         scoreText.text = currentScore.ToString() + "/" + goalScore.ToString();
     }
 

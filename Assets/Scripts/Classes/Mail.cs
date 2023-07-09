@@ -70,8 +70,7 @@ public class Mail {
         }
 
         int ratingRange = Random.Range(1, 101);
-        int storeRating = ratingRange > 80 ? 5 : ratingRange > 40 ? 4 : ratingRange > 15 ? 3 : 2;
-        int rating = Random.Range(1, 6);
+        int storeRating = ratingRange > 80 ? 5 : ratingRange > 40 ? 4 : ratingRange > 10 ? 3 : 2;
         string description = Universe.descriptions[genre][Random.Range(0, Universe.descriptions[genre].Length)];
 
         bool spam = false;
@@ -81,6 +80,6 @@ public class Mail {
             description = Universe.spamDescriptions[Random.Range(0, Universe.spamDescriptions.Length)];
         }
 
-        return new Mail(title, from, genre, subgenres, rating, description, spam);
+        return new Mail(title, from, genre, subgenres, storeRating, description, spam);
     }
 }

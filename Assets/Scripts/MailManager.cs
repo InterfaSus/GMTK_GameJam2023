@@ -13,6 +13,7 @@ public class MailManager : MonoBehaviour
     public GameObject fullMailObject;
     public MailCategory currentCategory { get; private set; }
 
+    RulesManager rulesManager;
     public int correctScore = 10;
     public int incorrectScore = -3;
 
@@ -22,6 +23,7 @@ public class MailManager : MonoBehaviour
 
     void Start() {
 
+        rulesManager = FindObjectOfType<RulesManager>();
         fullMailObject.SetActive(false);
         categoriesNumbers = categoriesContainer.GetComponentsInChildren<TextMeshProUGUI>().Where(x => x.name.Contains("Number")).ToArray();
 
@@ -66,7 +68,7 @@ public class MailManager : MonoBehaviour
 
     public void Respond(Mail mail, bool accepted) {
         
-        mail.IsValid = GetComponent<RulesManager>().CheckRules(mail);
+        mail.IsValid = rulesManager.CheckRules(mail);
 
         if (accepted == mail.IsValid) {
 
@@ -96,8 +98,17 @@ public class MailManager : MonoBehaviour
         while (true) {
 
             yield return new WaitForSeconds(1.0f);
+            
+            Mail newMail;
+            bool mustBeValid = Random.Range(0, 2) == 0;
 
-            var newMail = Mail.GenerateMail();
+            while (true) {
+                
+                newMail = Mail.GenerateMail();
+                if (rulesManager.CheckRules(newMail) == mustBeValid) {
+                    break;
+                }
+            }
 
             bool filtered = Random.Range(0, 101) <= Persistents.upgradeLevels[2] * 25;
             if (newMail.IsSpam && filtered) newMail.Category = MailCategory.Spam;
