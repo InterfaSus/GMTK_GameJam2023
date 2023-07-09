@@ -48,18 +48,24 @@ public class ShopManager : MonoBehaviour
     }
 
     void Start()
-    {
+    {   
+        memoryUpgradeLevel = Persistents.upgradeLevels[0];
+        focusUpgradeLevel = Persistents.upgradeLevels[1];
+        antiSpamUpgradeLevel = Persistents.upgradeLevels[2];
+        timeUpgradeLevel = Persistents.upgradeLevels[3];
+        loadTimeUpgradeLevel = Persistents.upgradeLevels[4];
+
         upgradeLevels[0] = memoryUpgradeLevel;
         upgradeLevels[1] = focusUpgradeLevel;
         upgradeLevels[2] = antiSpamUpgradeLevel;
         upgradeLevels[3] = timeUpgradeLevel;
         upgradeLevels[4] = loadTimeUpgradeLevel;
 
-        costs[0].text = memoryUpgradeCosts[memoryUpgradeLevel].ToString() + " Points";
-        costs[1].text = focusUpgradeCosts[focusUpgradeLevel].ToString() + " Points";
-        costs[2].text = antiSpamUpgradeCosts[antiSpamUpgradeLevel].ToString() + " Points";
-        costs[3].text = timeUpgradeCosts[timeUpgradeLevel].ToString() + " Points";
-        costs[4].text = loadTimeUpgradeCosts[loadTimeUpgradeLevel].ToString() + " Points";
+        costs[0].text = memoryUpgradeLevel < memoryUpgradeCosts.Length ? memoryUpgradeCosts[memoryUpgradeLevel].ToString() + " Points" : "";
+        costs[1].text = focusUpgradeLevel < focusUpgradeCosts.Length ? focusUpgradeCosts[focusUpgradeLevel].ToString() + " Points" : "";
+        costs[2].text = antiSpamUpgradeLevel < antiSpamUpgradeCosts.Length ? antiSpamUpgradeCosts[antiSpamUpgradeLevel].ToString() + " Points" : "";
+        costs[3].text = timeUpgradeLevel < timeUpgradeCosts.Length ? timeUpgradeCosts[timeUpgradeLevel].ToString() + " Points" : "";
+        costs[4].text = loadTimeUpgradeLevel < loadTimeUpgradeCosts.Length ? loadTimeUpgradeCosts[loadTimeUpgradeLevel].ToString() + " Points" : "";
 
         pointsText.text = "Points:" + Persistents.currentScore.ToString();
 
@@ -122,6 +128,7 @@ public class ShopManager : MonoBehaviour
 
             if(memoryUpgradeLevel < memoryUpgradeCosts.Length)
             upgradeLevels[0] = memoryUpgradeLevel;
+            Persistents.upgradeLevels[0] = memoryUpgradeLevel;
 
             levels[0].text = memoryUpgradeLevel.ToString();
 
@@ -147,6 +154,7 @@ public class ShopManager : MonoBehaviour
 
             if(focusUpgradeLevel < focusUpgradeCosts.Length)
             upgradeLevels[1] = focusUpgradeLevel;
+            Persistents.upgradeLevels[1] = focusUpgradeLevel;
 
             levels[1].text = focusUpgradeLevel.ToString();
 
@@ -172,6 +180,7 @@ public class ShopManager : MonoBehaviour
 
             if(antiSpamUpgradeLevel < antiSpamUpgradeCosts.Length)
             upgradeLevels[2] = antiSpamUpgradeLevel;
+            Persistents.upgradeLevels[2] = antiSpamUpgradeLevel;
 
             levels[2].text = antiSpamUpgradeLevel.ToString();
 
@@ -197,6 +206,7 @@ public class ShopManager : MonoBehaviour
 
             if(timeUpgradeLevel < timeUpgradeCosts.Length)
             upgradeLevels[3] = timeUpgradeLevel;
+            Persistents.upgradeLevels[3] = timeUpgradeLevel;
 
             levels[3].text = timeUpgradeLevel.ToString();
 
@@ -221,6 +231,7 @@ public class ShopManager : MonoBehaviour
 
             if(loadTimeUpgradeLevel < loadTimeUpgradeCosts.Length)
             upgradeLevels[4] = loadTimeUpgradeLevel;
+            Persistents.upgradeLevels[4] = loadTimeUpgradeLevel;
 
             levels[4].text = loadTimeUpgradeLevel.ToString();
 

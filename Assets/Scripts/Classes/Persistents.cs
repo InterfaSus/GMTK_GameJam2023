@@ -5,4 +5,5 @@ public static class Persistents {
     public static int[] RulesAmount = new int[] {4, 4, 5, 5, 5, 6, 6};
     public static int MaxMemory = 2;
     public static int currentScore = 0;
+    public static int[] upgradeLevels = new int[5];
 }
