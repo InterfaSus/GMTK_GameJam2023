@@ -14,7 +14,8 @@ public class RulesList : MonoBehaviour
     RulesManager rulesManager;
     List<Toggle> toggles;
     List<string> rulesNames;
-    public int toggleLimit = 4;
+    
+    int toggleLimit = 2;
     int count = 0;
 
     void Start() {
@@ -38,13 +39,17 @@ public class RulesList : MonoBehaviour
             Toggle instanceToggle = ruleObject.GetComponentInChildren<Toggle>();
             
             toggles.Add(instanceToggle);
+            instanceToggle.onValueChanged.AddListener((value) => {
+                if (value && count == toggleLimit) {
+                    instanceToggle.isOn = false;
+                }
+
+                count = toggles.Count(t => t.isOn);
+                countText.text = $"{count}/{toggleLimit}";
+            });
 
             rulesNames.Add(ruleObject.GetComponentInChildren<TextMeshProUGUI>().text);
         }
-    }
-
-    public void ClickToggle(bool value) {
-
     }
 
     public void CloseList() {
