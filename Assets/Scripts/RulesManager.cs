@@ -67,7 +67,7 @@ public class RulesManager : MonoBehaviour
         // Genre Valid rule
         bool isAcceptGenre = UnityEngine.Random.Range(0, 2) == 0;
 
-        int genreAmount = isAcceptGenre ? UnityEngine.Random.Range(4, 6) : UnityEngine.Random.Range(1, 3);
+        int genreAmount = isAcceptGenre ? UnityEngine.Random.Range(3, 5) : UnityEngine.Random.Range(1, 3);
         string[] genres = new string[genreAmount];
         string[] genresCopy = (string[])Universe.genres.Clone();
 
@@ -79,20 +79,20 @@ public class RulesManager : MonoBehaviour
 
         if (isAcceptGenre) {
 
-            ruleMsg = $"ONLY ACCEPT MAIN genres: {string.Join(", ", genres)}";
+            ruleMsg = $"Main genre MUST be: {string.Join(", ", genres)}";
             rules.Add((ruleMsg, (mail) => {
                 return Rules.GenreValid(mail, genres);
             }));
         }
         else {
-            ruleMsg = $"REJECT MAIN genres: {string.Join(", ", genres)}";
+            ruleMsg = $"Main genre CAN'T be: {string.Join(", ", genres)}";
             rules.Add((ruleMsg, (mail) => {
                 return Rules.GenreNeither(mail, genres);
             }));
         }
 
         // Subgenre Valid rule
-        int subgenreAmount = UnityEngine.Random.Range(3, 6);
+        int subgenreAmount = UnityEngine.Random.Range(3, 5);
         string[] subgenres = new string[subgenreAmount];
         string[] subgenresCopy = (string[])Universe.genres.Clone();
 
@@ -102,7 +102,7 @@ public class RulesManager : MonoBehaviour
             subgenresCopy = subgenresCopy.Where((val, idx) => idx != index).ToArray();
         }
 
-        ruleMsg = $"ONLY ACCEPT games with at least one of these SUBgenres: {string.Join(", ", subgenres)}";
+        ruleMsg = $"MUST HAVE at least one of these SUBgenres: {string.Join(", ", subgenres)}";
         rules.Add((ruleMsg, (mail) => {
             return Rules.SubgenreValid(mail, subgenres);
         }));
@@ -112,7 +112,7 @@ public class RulesManager : MonoBehaviour
 
         int maxVal = Universe.critics.ElementAt(indexCritic).Value;
         int limit = UnityEngine.Random.Range(maxVal / 2, 3 * maxVal / 4 + 1);
-        ruleMsg = $"ONLY ACCEPT games with at least {limit} from {Universe.critics.ElementAt(indexCritic).Key}";
+        ruleMsg = $"MUST HAVE at least {limit} from {Universe.critics.ElementAt(indexCritic).Key}";
         rules.Add((ruleMsg, (mail) => {
             return Rules.CriticsRating(mail, Universe.critics.ElementAt(indexCritic).Key, limit);
         }));

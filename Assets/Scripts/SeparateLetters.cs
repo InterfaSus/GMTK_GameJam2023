@@ -13,12 +13,9 @@ public class SeparateLetters : MonoBehaviour
     private Vector3[] directions;
     private bool finishedLoading = false;
 
-    private void Start() {
+    public void InitializeLetters(string text) {
         
-        InitializeLetters();
-    }
-
-    private void InitializeLetters() {
+        textComponent.text = text;
 
         letterTransforms = new Transform[textComponent.text.Length];
         originalPositions = new Vector3[textComponent.text.Length];
@@ -50,6 +47,7 @@ public class SeparateLetters : MonoBehaviour
             directions[i] = Random.insideUnitCircle.normalized;
         }
 
+        textComponent.text = "";
         finishedLoading = true;
     }
 
@@ -68,7 +66,7 @@ public class SeparateLetters : MonoBehaviour
 
         if (finishedLoading) {
             for (int i = 0; i < letterTransforms.Length; i++) {
-
+                
                 letterTransforms[i].position = Vector3.Lerp(letterTransforms[i].position, letterTransforms[i].position + directions[i], 1.0f / separationDelay * Time.deltaTime * 0.5f);
             }
         }
