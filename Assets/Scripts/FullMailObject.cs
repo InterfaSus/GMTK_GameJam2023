@@ -11,6 +11,7 @@ public class FullMailObject : MonoBehaviour {
     public TextMeshProUGUI[] ratingsText;
     public TextMeshProUGUI subgenresText;
     public TextMeshProUGUI starRating;
+    public TextMeshProUGUI description;
 
     MailManager mailManager;
     Mail mail;
@@ -39,6 +40,7 @@ public class FullMailObject : MonoBehaviour {
         }
 
         subgenresText.text = string.Join(", ", mail.Subgenres);
+        description.text = mail.Description;
     }
 
     public void Respond(bool accepted) {

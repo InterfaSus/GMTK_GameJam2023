@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class RulesManager : MonoBehaviour
@@ -15,6 +16,7 @@ public class RulesManager : MonoBehaviour
     void Start() {
         
         GenerateRandomRules(3);
+
         // for(int i = 1; i <= 10; i++) {
         //     GenerateRandomRules(3);
         // }
