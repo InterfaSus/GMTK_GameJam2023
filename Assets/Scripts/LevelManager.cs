@@ -8,7 +8,16 @@ public class LevelManager : MonoBehaviour
     
     public void NextLevel() {
 
-        Persistents.Level++;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
+        if(Persistents.Level < 5)
+        {
+            Persistents.Level++;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        else
+        {
+            ScreensManager.instance.SetActive("victory");
+        }
     }
 }
