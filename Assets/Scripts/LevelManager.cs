@@ -26,9 +26,27 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void NextLevel() {
+    IEnumerator FadeToBlack(int scene) {
+            
+        float alpha = 0;
+        while (alpha < 1) {
+            alpha += Time.deltaTime * Persistents.fadeSpeed;
+            blackFade.color = new Color(0, 0, 0, alpha);
+            yield return null;
+        }
 
-        
+        SceneManager.LoadScene(scene);
+    }
+
+    IEnumerator AdvanceLevel() {
+
+        float alpha = 0;
+        while (alpha < 1) {
+            alpha += Time.deltaTime * Persistents.fadeSpeed;
+            blackFade.color = new Color(0, 0, 0, alpha);
+            yield return null;
+        }
+
         if(Persistents.Level < 5)
         {
             Persistents.Level++;
@@ -41,13 +59,18 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void NextLevel() {
+
+        StartCoroutine(AdvanceLevel());
+    }
+
     public void RestartGame() {
             
-        SceneManager.LoadScene(1);
+        StartCoroutine(FadeToBlack(1));
     }
 
     public void MainMenu() {
 
-        SceneManager.LoadScene(0);
+        StartCoroutine(FadeToBlack(0));
     }
 }

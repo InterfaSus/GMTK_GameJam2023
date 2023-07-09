@@ -15,6 +15,18 @@ public class MainMenuManager : MonoBehaviour
 
         if(Persistents.Level > 1) continueButton.SetActive(true);
         else continueButton.SetActive(false);
+        StartCoroutine(FadeFromBlack());
+    }
+
+    IEnumerator FadeFromBlack() {
+        
+        float alpha = 1;
+        while (alpha > 0) {
+            alpha -= Time.deltaTime;
+            if (alpha < 0) alpha = 0;
+            blackFade.color = new Color(0, 0, 0, alpha);
+            yield return null;
+        }
     }
 
     public void PlayGame(bool reset) {
@@ -26,8 +38,6 @@ public class MainMenuManager : MonoBehaviour
         }
 
         StartCoroutine(FadeToBlack());
-
-        // SceneManager.LoadScene(1);
     }
 
     IEnumerator FadeToBlack() {
