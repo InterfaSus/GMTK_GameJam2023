@@ -104,8 +104,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7689949698271981656}
   - {fileID: 2775165505273006696}
+  - {fileID: 7689949698271981656}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -145,7 +145,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5143951862131171295}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -384,7 +384,7 @@ RectTransform:
   - {fileID: 3915914850020071868}
   - {fileID: 5453522070540128037}
   m_Father: {fileID: 5143951862131171295}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -426,7 +426,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -31.763977, y: 0}
+  m_AnchoredPosition: {x: -31.764, y: -4}
   m_SizeDelta: {x: -63.5279, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5776509323433406548
@@ -457,7 +457,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: La regla es esta bien larga para ver blablablalbslald AAAAAA
+  m_text: La regla es esta bien larga para ver blablablalbslald AAAAAA sdausdhasidohiashfddsubhfousdhgfhuodshfuihsdoiufhdsiuhfudshofiuhdsoufhsfuhdsuihfoishdfushdufihsdhfuishdfiuhsdu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8099f20ead79d6e0885da676b5c561b, type: 2}
   m_sharedMaterial: {fileID: -7663942309397064368, guid: f8099f20ead79d6e0885da676b5c561b, type: 2}
@@ -484,8 +484,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
