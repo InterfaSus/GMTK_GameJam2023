@@ -9,12 +9,14 @@ public class ScoreManager : MonoBehaviour
     
     public TextMeshProUGUI scoreText;
 
-    public int goalScore = 100;
-    int currentScore = 0;
+    public int goalScore;
+    public int currentScore = 0;
 
-    void Awake()
+    void Start()
     {
         instance = this;
+        goalScore = Persistents.GoalScore[Persistents.Level - 1];
+        UpdateScore(0);
     }
 
     public void UpdateScore(int amount) {

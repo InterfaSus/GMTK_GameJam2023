@@ -7,8 +7,6 @@ public class ShopManager : MonoBehaviour
 {
     public Stats stats;
 
-    private int points = 100;
-
     public GameObject[] buttons;
     public TextMeshProUGUI[] levels;
     public TextMeshProUGUI[] costs;
@@ -43,21 +41,33 @@ public class ShopManager : MonoBehaviour
     private int timeUpgradeLevel = 0;
     private int loadTimeUpgradeLevel = 0;
     
+
+    public void UpdateShop() {
+
+        pointsText.text = "Points: " + Persistents.currentScore.ToString();
+    }
+
     void Start()
-    {
+    {   
+        memoryUpgradeLevel = Persistents.upgradeLevels[0];
+        focusUpgradeLevel = Persistents.upgradeLevels[1];
+        antiSpamUpgradeLevel = Persistents.upgradeLevels[2];
+        timeUpgradeLevel = Persistents.upgradeLevels[3];
+        loadTimeUpgradeLevel = Persistents.upgradeLevels[4];
+
         upgradeLevels[0] = memoryUpgradeLevel;
         upgradeLevels[1] = focusUpgradeLevel;
         upgradeLevels[2] = antiSpamUpgradeLevel;
         upgradeLevels[3] = timeUpgradeLevel;
         upgradeLevels[4] = loadTimeUpgradeLevel;
 
-        costs[0].text = memoryUpgradeCosts[memoryUpgradeLevel].ToString() + " Points";
-        costs[1].text = focusUpgradeCosts[focusUpgradeLevel].ToString() + " Points";
-        costs[2].text = antiSpamUpgradeCosts[antiSpamUpgradeLevel].ToString() + " Points";
-        costs[3].text = timeUpgradeCosts[timeUpgradeLevel].ToString() + " Points";
-        costs[4].text = loadTimeUpgradeCosts[loadTimeUpgradeLevel].ToString() + " Points";
+        costs[0].text = memoryUpgradeLevel < memoryUpgradeCosts.Length ? memoryUpgradeCosts[memoryUpgradeLevel].ToString() + " Points" : "";
+        costs[1].text = focusUpgradeLevel < focusUpgradeCosts.Length ? focusUpgradeCosts[focusUpgradeLevel].ToString() + " Points" : "";
+        costs[2].text = antiSpamUpgradeLevel < antiSpamUpgradeCosts.Length ? antiSpamUpgradeCosts[antiSpamUpgradeLevel].ToString() + " Points" : "";
+        costs[3].text = timeUpgradeLevel < timeUpgradeCosts.Length ? timeUpgradeCosts[timeUpgradeLevel].ToString() + " Points" : "";
+        costs[4].text = loadTimeUpgradeLevel < loadTimeUpgradeCosts.Length ? loadTimeUpgradeCosts[loadTimeUpgradeLevel].ToString() + " Points" : "";
 
-        pointsText.text = "Points:" + points.ToString();
+        pointsText.text = "Points:" + Persistents.currentScore.ToString();
 
         for (int i = 0; i < upgradeLevels.Length; i++)
         {
@@ -109,15 +119,16 @@ public class ShopManager : MonoBehaviour
 
     public void IncreaseMemory()
     {
-        if (memoryUpgradeCosts[memoryUpgradeLevel] <= points)
+        if (memoryUpgradeCosts[memoryUpgradeLevel] <= Persistents.currentScore)
         {
-            points -= memoryUpgradeCosts[memoryUpgradeLevel];
-            pointsText.text = "Points:" + points.ToString();
+            Persistents.currentScore -= memoryUpgradeCosts[memoryUpgradeLevel];
+            pointsText.text = "Points:" + Persistents.currentScore.ToString();
             
             memoryUpgradeLevel++;
 
             if(memoryUpgradeLevel < memoryUpgradeCosts.Length)
             upgradeLevels[0] = memoryUpgradeLevel;
+            Persistents.upgradeLevels[0] = memoryUpgradeLevel;
 
             levels[0].text = memoryUpgradeLevel.ToString();
 
@@ -134,15 +145,16 @@ public class ShopManager : MonoBehaviour
 
     public void IncreaseFocus(float amount)
     {
-        if (focusUpgradeCosts[focusUpgradeLevel] <= points)
+        if (focusUpgradeCosts[focusUpgradeLevel] <= Persistents.currentScore)
         {
-            points -= focusUpgradeCosts[focusUpgradeLevel];
-            pointsText.text = "Points:" + points.ToString();
+            Persistents.currentScore -= focusUpgradeCosts[focusUpgradeLevel];
+            pointsText.text = "Points:" + Persistents.currentScore.ToString();
 
             focusUpgradeLevel++;
 
             if(focusUpgradeLevel < focusUpgradeCosts.Length)
             upgradeLevels[1] = focusUpgradeLevel;
+            Persistents.upgradeLevels[1] = focusUpgradeLevel;
 
             levels[1].text = focusUpgradeLevel.ToString();
 
@@ -159,15 +171,16 @@ public class ShopManager : MonoBehaviour
 
     public void IncreaseAntiSpam(float amount)
     {
-        if (antiSpamUpgradeCosts[antiSpamUpgradeLevel] <= points)
+        if (antiSpamUpgradeCosts[antiSpamUpgradeLevel] <= Persistents.currentScore)
         {
-            points -= antiSpamUpgradeCosts[antiSpamUpgradeLevel];
-            pointsText.text = "Points:" + points.ToString();
+            Persistents.currentScore -= antiSpamUpgradeCosts[antiSpamUpgradeLevel];
+            pointsText.text = "Points:" + Persistents.currentScore.ToString();
 
             antiSpamUpgradeLevel++;
 
             if(antiSpamUpgradeLevel < antiSpamUpgradeCosts.Length)
             upgradeLevels[2] = antiSpamUpgradeLevel;
+            Persistents.upgradeLevels[2] = antiSpamUpgradeLevel;
 
             levels[2].text = antiSpamUpgradeLevel.ToString();
 
@@ -184,15 +197,16 @@ public class ShopManager : MonoBehaviour
 
     public void DecreaseTimeSpeed(float amount)
     {
-        if (timeUpgradeCosts[timeUpgradeLevel] <= points)
+        if (timeUpgradeCosts[timeUpgradeLevel] <= Persistents.currentScore)
         {
-            points -= timeUpgradeCosts[timeUpgradeLevel];
-            pointsText.text = "Points:" + points.ToString();
+            Persistents.currentScore -= timeUpgradeCosts[timeUpgradeLevel];
+            pointsText.text = "Points:" + Persistents.currentScore.ToString();
 
             timeUpgradeLevel++;
 
             if(timeUpgradeLevel < timeUpgradeCosts.Length)
             upgradeLevels[3] = timeUpgradeLevel;
+            Persistents.upgradeLevels[3] = timeUpgradeLevel;
 
             levels[3].text = timeUpgradeLevel.ToString();
 
@@ -208,15 +222,16 @@ public class ShopManager : MonoBehaviour
     }
     public void DecreaseLoadTime(float amount)
     {
-        if (loadTimeUpgradeCosts[loadTimeUpgradeLevel] <= points)
+        if (loadTimeUpgradeCosts[loadTimeUpgradeLevel] <= Persistents.currentScore)
         {
-            points -= loadTimeUpgradeCosts[loadTimeUpgradeLevel];
-            pointsText.text = "Points:" + points.ToString();
+            Persistents.currentScore -= loadTimeUpgradeCosts[loadTimeUpgradeLevel];
+            pointsText.text = "Points:" + Persistents.currentScore.ToString();
 
             loadTimeUpgradeLevel++;
 
             if(loadTimeUpgradeLevel < loadTimeUpgradeCosts.Length)
             upgradeLevels[4] = loadTimeUpgradeLevel;
+            Persistents.upgradeLevels[4] = loadTimeUpgradeLevel;
 
             levels[4].text = loadTimeUpgradeLevel.ToString();
 

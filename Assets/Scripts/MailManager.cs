@@ -70,7 +70,7 @@ public class MailManager : MonoBehaviour
 
         if (accepted == mail.IsValid) {
 
-            GetComponent<ScoreManager>().UpdateScore(correctScore);
+            GetComponent<ScoreManager>().UpdateScore(correctScore * (mail.IsSpam ? 0 : 1));
             mail.Category = MailCategory.Correct;
         }
         else {
@@ -81,6 +81,10 @@ public class MailManager : MonoBehaviour
             Browser.instance.toggleBlocks();
 
             mail.Category = MailCategory.Incorrect;
+        }
+
+        if (mail.IsSpam) {
+            mail.Category = MailCategory.Spam;
         }
 
         UpdateCategoriesNumbers();
@@ -94,6 +98,10 @@ public class MailManager : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
 
             var newMail = Mail.GenerateMail();
+
+            bool filtered = Random.Range(0, 101) <= Persistents.upgradeLevels[2] * 25;
+            if (newMail.IsSpam && filtered) newMail.Category = MailCategory.Spam;
+
             mails.Add(newMail);
 
             UpdateCategoriesNumbers();

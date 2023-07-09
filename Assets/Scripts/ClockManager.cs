@@ -14,10 +14,13 @@ public class ClockManager : MonoBehaviour
 
     private float actualTime;
     private float currentTime;
+    private bool running = true;
 
     // Update is called once per frame
     void Update()
     {   
+        if (!running) return;
+
         if(actualTime <= endTime)
         {
             currentTime += Time.deltaTime * timeSpeed/100;
@@ -25,12 +28,16 @@ public class ClockManager : MonoBehaviour
 
 
             DateTime timeText = DateTime.Today.AddHours(actualTime);
-            string formatHour = timeText.ToString("h:mm tt");
-            clock.text = formatHour;
+            string formatHour = timeText.ToString("hh:mm tt");
+
+            if(timeText.Minute % 15 == 0) clock.text = formatHour;
         }
 
         else
-        {
+        {   
+            running = false;
+            Persistents.currentScore += GetComponent<ScoreManager>().currentScore;
+
             if(ScoreManager.instance.IsGoalMet())
                 ScreensManager.instance.SetActive("shop");
             else

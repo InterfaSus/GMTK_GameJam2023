@@ -8,7 +8,7 @@ public class ProgressBar : MonoBehaviour
     public Slider slider;
     public AnimationCurve loadCurve;
     public Button startButton;
-    public float loadTime = 5.0f;
+    public float baseLoadTime = 10.0f;
 
 
     private float progress = 0.0f;
@@ -18,7 +18,7 @@ public class ProgressBar : MonoBehaviour
     {
         if (loadingStarted && progress < 1.0f)
         {
-            progress += Time.deltaTime / loadTime; // Incrementa el progreso con el tiempo
+            progress += Time.deltaTime / (baseLoadTime - 1.5f * Persistents.upgradeLevels[4]); // Incrementa el progreso con el tiempo
             progress = Mathf.Clamp01(progress); // Asegúrate de que el progreso esté dentro del rango [0, 1]
             float curveValue = loadCurve.Evaluate(progress); // Evalúa la curva de animación en el progreso de la carga actual
             slider.value = curveValue; // Actualiza el valor del Slider con el valor de la curva de animación

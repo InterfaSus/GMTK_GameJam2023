@@ -15,11 +15,7 @@ public class RulesManager : MonoBehaviour
 
     void Start() {
         
-        GenerateRandomRules(3);
-
-        // for(int i = 1; i <= 10; i++) {
-        //     GenerateRandomRules(3);
-        // }
+        GenerateRandomRules(Persistents.RulesAmount[Persistents.Level - 1]);
     }
 
     public bool CheckRules(Mail mail) {
@@ -31,14 +27,19 @@ public class RulesManager : MonoBehaviour
 
         rules = new List<(string, Func<Mail, bool>)>();
 
+        // Spam rule
+        string ruleMsg = $"Reject everything with spam in the description";
+        rules.Add((ruleMsg, (mail) => {
+            return Rules.NotSpam(mail);
+        }));
+
         // Rating rule
         int threshold = UnityEngine.Random.Range(3, 5);
-        string ruleMsg = $"Stars rating must be at least {threshold}";
+        ruleMsg = $"Stars rating must be at least {threshold}";
 
         rules.Add((ruleMsg, (mail) => {
             return Rules.Rating(mail, threshold);
         }));
-
 
         // From rule
         bool isAcceptDomain = UnityEngine.Random.Range(0, 2) == 0;
@@ -65,6 +66,16 @@ public class RulesManager : MonoBehaviour
                 return Rules.FromNeither(mail, domains);
             }));
         }
+
+        // Critics Rating rule
+        int indexCritic = UnityEngine.Random.Range(0, 4);
+
+        int maxVal = Universe.critics.ElementAt(indexCritic).Value;
+        int limit = UnityEngine.Random.Range(maxVal / 2, 3 * maxVal / 4 + 1);
+        ruleMsg = $"At least {limit} points from {Universe.critics.ElementAt(indexCritic).Key}";
+        rules.Add((ruleMsg, (mail) => {
+            return Rules.CriticsRating(mail, Universe.critics.ElementAt(indexCritic).Key, limit);
+        }));
 
         // Genre Valid rule
         bool isAcceptGenre = UnityEngine.Random.Range(0, 2) == 0;
@@ -109,14 +120,6 @@ public class RulesManager : MonoBehaviour
             return Rules.SubgenreValid(mail, subgenres);
         }));
 
-        // Critics Rating rule
-        int indexCritic = UnityEngine.Random.Range(0, 4);
-
-        int maxVal = Universe.critics.ElementAt(indexCritic).Value;
-        int limit = UnityEngine.Random.Range(maxVal / 2, 3 * maxVal / 4 + 1);
-        ruleMsg = $"At least {limit} points from {Universe.critics.ElementAt(indexCritic).Key}";
-        rules.Add((ruleMsg, (mail) => {
-            return Rules.CriticsRating(mail, Universe.critics.ElementAt(indexCritic).Key, limit);
-        }));
+        rules = rules.Take(amount).ToList();
     }
 }

@@ -100,4 +100,17 @@ public static class Universe {
             }
         },
     };
+
+    public static string[] spamDescriptions = new string[] {
+        "Get rich quick! Join our exclusive club of money magnets and live the life you've always dreamed of. No more counting pennies, only dollar bills flying around!",
+        "Earn $1000 per day! It's as easy as sipping a cup of coffee. Just sit back, relax, and watch your bank account grow faster than a caffeinated cheetah!",
+        "Struggling to lose those extra pounds? Say goodbye to salads and hello to our magical weight loss potion. It's so effective, you'll start floating like a helium balloon!",
+        "Enlarge your... uh, self-confidence! Our revolutionary product will boost your ego to skyscraper heights. You'll feel like the superhero version of yourself in no time!",
+        "Congratulations! You've won a free vacation to a tropical paradise. Prepare to soak up the sun, sip fruity drinks, and practice your best synchronized swimming moves with dolphins!",
+        "Click here for a special offer! It's like finding a hidden treasure chest full of discounts and amazing deals. Just don't forget your pirate hat and eye patch!",
+        "Limited time offer! Buy now and unleash your inner shopaholic. It's the perfect excuse to treat yourself to something fancy while avoiding the guilt trip!",
+        "Make money from home with no effort! Our foolproof system will turn you into a money-making maestro while you lounge in your pajamas. Hello, financial freedom!",
+        "Searching for love? Look no further! Our dating service connects you with charming singles who will make your heart skip a beat. Prepare for a love story that even Nicholas Sparks would envy!",
+        "You're a winner! Claim your prize and celebrate like there's no tomorrow. Pop open the champagne, put on your victory dance playlist, and get ready to make it rain confetti!",
+    };
 }
