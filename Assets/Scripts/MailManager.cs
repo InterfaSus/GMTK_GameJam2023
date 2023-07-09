@@ -98,6 +98,10 @@ public class MailManager : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
 
             var newMail = Mail.GenerateMail();
+
+            bool filtered = Random.Range(0, 101) <= Persistents.upgradeLevels[2] * 25;
+            if (newMail.IsSpam && filtered) newMail.Category = MailCategory.Spam;
+
             mails.Add(newMail);
 
             UpdateCategoriesNumbers();

@@ -2745,8 +2745,26 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.15003173
     - serializedVersion: 3
-      time: 1.070027
-      value: 0.99435425
+      time: 0.5429026
+      value: 0.9471665
+      inSlope: 0.22314191
+      outSlope: 0.22314191
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.7617141
+      value: 0.86387104
+      inSlope: -0.25374362
+      outSlope: -0.25374362
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.6993592
+    - serializedVersion: 3
+      time: 0.99434066
+      value: 0.9897028
       inSlope: 0.35352916
       outSlope: 0.35352916
       tangentMode: 0
@@ -2757,7 +2775,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   startButton: {fileID: 459664611}
-  loadTime: 5
+  baseLoadTime: 10
 --- !u!95 &505092541
 Animator:
   serializedVersion: 4
@@ -11422,7 +11440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startTime: 7.5
   endTime: 16
-  timeSpeed: 50
+  timeSpeed: 1
   clock: {fileID: 1490762794}
 --- !u!114 &1948159370
 MonoBehaviour:

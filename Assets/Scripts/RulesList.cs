@@ -15,7 +15,7 @@ public class RulesList : MonoBehaviour
     List<Toggle> toggles;
     List<string> rulesNames;
     
-    int toggleLimit = Persistents.MaxMemory;
+    int toggleLimit = Persistents.BaseMemory + Persistents.upgradeLevels[0];
     int count = 0;
 
     void Start() {
