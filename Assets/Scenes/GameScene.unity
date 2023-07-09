@@ -11440,7 +11440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startTime: 7.5
   endTime: 16
-  timeSpeed: 1
+  timeSpeed: 5
   clock: {fileID: 1490762794}
 --- !u!114 &1948159370
 MonoBehaviour:
