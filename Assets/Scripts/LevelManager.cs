@@ -20,4 +20,14 @@ public class LevelManager : MonoBehaviour
             ScreensManager.instance.SetActive("victory");
         }
     }
+
+    public void RestartGame() {
+            
+        SceneManager.LoadScene(1);
+    }
+
+    public void MainMenu() {
+
+        SceneManager.LoadScene(0);
+    }
 }

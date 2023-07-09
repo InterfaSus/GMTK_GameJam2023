@@ -40,8 +40,13 @@ public class ClockManager : MonoBehaviour
 
             if(ScoreManager.instance.IsGoalMet())
                 ScreensManager.instance.SetActive("shop");
-            else
+            else {
+
+                Persistents.Level = 1;
+                Persistents.currentScore = 0;
+                Persistents.upgradeLevels = new int[5];
                 ScreensManager.instance.SetActive("game_over");
+            }
         }
     }
 }
