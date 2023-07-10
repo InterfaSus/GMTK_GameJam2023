@@ -13,6 +13,9 @@ public class MailManager : MonoBehaviour
     public GameObject fullMailObject;
     public MailCategory currentCategory { get; private set; }
 
+    public AudioSource correct;
+    public AudioSource error;
+
     RulesManager rulesManager;
     public int correctScore = 10;
     public int incorrectScore = -3;
@@ -73,11 +76,13 @@ public class MailManager : MonoBehaviour
 
         if (accepted == mail.IsValid) {
 
+            correct.Play();
             GetComponent<ScoreManager>().UpdateScore(correctScore * (mail.IsSpam ? 0 : 1));
             mail.Category = MailCategory.Correct;
         }
         else {
 
+            error.Play();
             GetComponent<ScoreManager>().UpdateScore(incorrectScore);
 
             Browser.instance.FocusTab("error");

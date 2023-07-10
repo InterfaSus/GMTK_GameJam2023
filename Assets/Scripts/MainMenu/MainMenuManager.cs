@@ -10,6 +10,7 @@ public class MainMenuManager : MonoBehaviour
     
     public GameObject continueButton;
     public Image blackFade;
+    public AudioSource music;
 
     void Start() {
 
@@ -20,11 +21,17 @@ public class MainMenuManager : MonoBehaviour
 
     IEnumerator FadeFromBlack() {
         
-        float alpha = 1;
+        float alpha = 3;
+
+        float finalVolume = music.volume;
+
         while (alpha > 0) {
             alpha -= Time.deltaTime;
             if (alpha < 0) alpha = 0;
             blackFade.color = new Color(0, 0, 0, alpha);
+
+            music.volume = Mathf.Lerp(finalVolume, 0, alpha);
+
             yield return null;
         }
     }
@@ -43,9 +50,16 @@ public class MainMenuManager : MonoBehaviour
     IEnumerator FadeToBlack() {
             
         float alpha = 0;
+        
+        float startVolume = music.volume;
+
         while (alpha < 1) {
+
             alpha += Time.deltaTime * Persistents.fadeSpeed;
             blackFade.color = new Color(0, 0, 0, alpha);
+
+            music.volume = Mathf.Lerp(startVolume, 0, alpha);
+
             yield return null;
         }
 
