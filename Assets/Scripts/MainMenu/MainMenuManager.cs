@@ -21,11 +21,17 @@ public class MainMenuManager : MonoBehaviour
 
     IEnumerator FadeFromBlack() {
         
-        float alpha = 1;
+        float alpha = 3;
+
+        float finalVolume = music.volume;
+
         while (alpha > 0) {
             alpha -= Time.deltaTime;
             if (alpha < 0) alpha = 0;
             blackFade.color = new Color(0, 0, 0, alpha);
+
+            music.volume = Mathf.Lerp(finalVolume, 0, alpha);
+
             yield return null;
         }
     }

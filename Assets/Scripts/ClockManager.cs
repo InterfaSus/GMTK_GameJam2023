@@ -48,5 +48,11 @@ public class ClockManager : MonoBehaviour
                 ScreensManager.instance.SetActive("game_over");
             }
         }
+
+        //For debugging
+        public void FinishDay()
+        {
+            actualTime = endTime;
+        }
     }
 }
