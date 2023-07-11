@@ -28,7 +28,7 @@ public class ScreensManager : MonoBehaviour
         instance = this;
     }
 
-     void Update() 
+    void Update() 
     {
         if (BGMusic.time >= 32f)
         {
