@@ -8,4 +8,5 @@ public static class Persistents {
     public static int BaseMemory = 2;
     public static int currentScore = 0;
     public static int[] upgradeLevels = new int[5];
+    public static float memoryFadeSpeed = 2f;
 }

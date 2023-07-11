@@ -9,13 +9,13 @@ public class LevelManager : MonoBehaviour
 {
     
     public Image blackFade;
-    public AudioSource NewDay;
 
     void Start() {
 
-        StartCoroutine(FadeFromBlack());
+        ScreensManager.instance.StartLevel();
     }
 
+   
     IEnumerator FadeFromBlack() {
         
         float alpha = 1;
@@ -25,10 +25,6 @@ public class LevelManager : MonoBehaviour
             blackFade.color = new Color(0, 0, 0, alpha);
             yield return null;
         }
-
-        if(alpha <= 0) NewDay.Stop();
-
-        NewDay.Play();
     }
 
     IEnumerator FadeToBlack(int scene) {
@@ -47,7 +43,7 @@ public class LevelManager : MonoBehaviour
 
         float alpha = 0;
         while (alpha < 1) {
-            alpha += Time.deltaTime * Persistents.fadeSpeed;
+            alpha += Time.deltaTime * Persistents.fadeSpeed * 0.2f;
             blackFade.color = new Color(0, 0, 0, alpha);
             yield return null;
         }

@@ -11,10 +11,14 @@ public class ClockManager : MonoBehaviour
     public float endTime = 16; //4:00 PM
     public float timeSpeed = 3.0f;
     public TextMeshProUGUI clock;
+    public AudioSource alarm;
+
 
     private float actualTime;
     private float currentTime;
     private bool running = true;
+    private bool alreadyPlayed = false;
+
 
     // Update is called once per frame
     void Update()
@@ -35,24 +39,36 @@ public class ClockManager : MonoBehaviour
 
         else
         {   
-            running = false;
-            Persistents.currentScore += GetComponent<ScoreManager>().currentScore;
+            if(!alreadyPlayed)
+            {
+                alreadyPlayed = true;
+                alarm.Play();
+            }
 
-            if(ScoreManager.instance.IsGoalMet())
-                ScreensManager.instance.SetActive("shop");
-            else {
+            if(!alarm.isPlaying)
+            {
+                running = false;
+                Persistents.currentScore += GetComponent<ScoreManager>().currentScore;
 
-                Persistents.Level = 1;
-                Persistents.currentScore = 0;
-                Persistents.upgradeLevels = new int[5];
-                ScreensManager.instance.SetActive("game_over");
+                if(ScoreManager.instance.IsGoalMet())
+                    ScreensManager.instance.SetActive("shop");
+                else {
+
+                    Persistents.Level = 1;
+                    Persistents.currentScore = 0;
+                    Persistents.upgradeLevels = new int[5];
+                    ScreensManager.instance.SetActive("game_over");
+                }
             }
         }
-
-        //For debugging
-        public void FinishDay()
-        {
-            actualTime = endTime;
-        }
     }
+
+
+    //For debugging
+    public void FinishDay()
+    {
+        currentTime = 8.5f;
+    }
+
+    
 }
