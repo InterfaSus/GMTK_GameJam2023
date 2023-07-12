@@ -109,7 +109,7 @@ public class MailManager : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(2.0f, 5.0f));
             
             Mail newMail;
-            bool mustBeValid = Random.Range(0, 2) == 0;
+            bool mustBeValid = Random.Range(0, Persistents.DidTutorial ? 2 : 1) == 0;
 
             while (true) {
                 

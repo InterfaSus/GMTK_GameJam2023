@@ -18,6 +18,7 @@ public class TutorialManager : MonoBehaviour
 
         if (Persistents.DidTutorial) {
             tutorialPanel.SetActive(false);
+            return;
         }
 
         // Agrega los primeros 3 elementos a la lista de texto

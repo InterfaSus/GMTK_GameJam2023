@@ -3272,18 +3272,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948159371}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: RestartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 62077269}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
@@ -3299,6 +3287,18 @@ MonoBehaviour:
       - m_Target: {fileID: 800992081}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1948159371}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5536,7 +5536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &664323613
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6996,6 +6996,18 @@ MonoBehaviour:
       - m_Target: {fileID: 800992081}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1948159371}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10747,6 +10759,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7574789386601899959, guid: d11697fbb1a7963ec86aaa0127d8b2a8, type: 3}
   m_PrefabInstance: {fileID: 1708720799}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1105220392 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1660962540937504874, guid: d05bf42ad22700be1badc4d03441841f, type: 3}
+  m_PrefabInstance: {fileID: 662166198}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b8827390e2730ad09d24801e86c7b95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1124797712
 GameObject:
   m_ObjectHideFlags: 0
@@ -11469,18 +11492,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1948159371}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: MainMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 62077269}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
@@ -11496,6 +11507,18 @@ MonoBehaviour:
       - m_Target: {fileID: 800992081}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1948159371}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16862,6 +16885,7 @@ MonoBehaviour:
   - {fileID: 2056049900}
   - {fileID: 466957826}
   - {fileID: 47785596}
+  - {fileID: 1105220392}
   GameOver: {fileID: 800992081}
   Shop: {fileID: 713434686}
   Victory: {fileID: 800992081}
@@ -16881,8 +16905,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1064236179}
-  goalScore: 0
-  currentScore: 0
+  goalScore: 100
+  currentScore: 300
 --- !u!114 &1948159367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16928,11 +16952,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6e7fae240593636a72d5b469aebe4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTime: 7.5
+  startTime: 15.5
   endTime: 16
   timeSpeed: 5
   clock: {fileID: 1490762794}
   alarm: {fileID: 475912085}
+  dayText: {fileID: 1025208965}
 --- !u!114 &1948159370
 MonoBehaviour:
   m_ObjectHideFlags: 0

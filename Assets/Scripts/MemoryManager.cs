@@ -26,16 +26,14 @@ public class MemoryManager : MonoBehaviour
     void Update() {
 
         if(Input.GetMouseButtonDown(1)) {
-            if (isInFront) {
-                RaiseVolume(false);
-                isInFront = false;
-                memoryPanel.transform.SetAsFirstSibling();
-            }
-            else {
-                RaiseVolume(true);
-                isInFront = true;
-                memoryPanel.transform.SetAsLastSibling();
-            }
+            RaiseVolume(true);
+            isInFront = true;
+            memoryPanel.transform.SetAsLastSibling();
+        }
+        else if (Input.GetMouseButtonUp(1)) {
+            RaiseVolume(false);
+            isInFront = false;
+            memoryPanel.transform.SetAsFirstSibling();
         }
     }
 
