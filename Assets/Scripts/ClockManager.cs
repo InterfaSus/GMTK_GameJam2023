@@ -56,7 +56,9 @@ public class ClockManager : MonoBehaviour
                 Persistents.currentScore += GetComponent<ScoreManager>().currentScore;
 
                 if(ScoreManager.instance.IsGoalMet())
-                    ScreensManager.instance.SetActive("shop");
+                    if(Persistents.Level < 5)
+                        ScreensManager.instance.SetActive("shop");
+                    else LevelManager.instance.NextLevel();
                 else {
 
                     ScreensManager.instance.SetActive("game_over");
