@@ -2929,7 +2929,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &374024274
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5536,7 +5536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &664323613
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16906,7 +16906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1064236179}
   goalScore: 100
-  currentScore: 300
+  currentScore: 0
 --- !u!114 &1948159367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16952,7 +16952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6e7fae240593636a72d5b469aebe4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTime: 15.5
+  startTime: 7.5
   endTime: 16
   timeSpeed: 5
   clock: {fileID: 1490762794}

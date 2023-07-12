@@ -17,7 +17,7 @@ public class MainMenuManager : MonoBehaviour
         if(Persistents.Level > 1) {
 
             continueButton.SetActive(true);
-            continueButton.GetComponent<TextMeshProUGUI>().text = $"Continue Day {Persistents.Level}";
+            continueButton.GetComponentInChildren<TextMeshProUGUI>().text = $"Continue Day {Persistents.Level}";
         }
         else continueButton.SetActive(false);
         StartCoroutine(FadeFromBlack());

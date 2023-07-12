@@ -7,15 +7,15 @@ using System;
 
 public class LevelManager : MonoBehaviour
 {
-    
+    public static LevelManager instance;
     public Image blackFade;
 
     void Start() {
 
         ScreensManager.instance.StartLevel();
+        instance = this;
     }
-
-   
+ 
     IEnumerator FadeFromBlack() {
         
         float alpha = 1;
@@ -41,15 +41,15 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator AdvanceLevel() {
 
-        float alpha = 0;
-        while (alpha < 1) {
-            alpha += Time.deltaTime * Persistents.fadeSpeed * 0.2f;
-            blackFade.color = new Color(0, 0, 0, alpha);
-            yield return null;
-        }
-
         if(Persistents.Level < 5)
         {
+            float alpha = 0;
+            while (alpha < 1) {
+                alpha += Time.deltaTime * Persistents.fadeSpeed * 0.2f;
+                blackFade.color = new Color(0, 0, 0, alpha);
+                yield return null;
+            }
+
             Persistents.Level++;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
