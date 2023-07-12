@@ -12,6 +12,7 @@ public class ClockManager : MonoBehaviour
     public float timeSpeed = 3.0f;
     public TextMeshProUGUI clock;
     public AudioSource alarm;
+    public TextMeshProUGUI dayText;
 
 
     private float actualTime;
@@ -19,6 +20,10 @@ public class ClockManager : MonoBehaviour
     private bool running = true;
     private bool alreadyPlayed = false;
 
+    void Start() {
+
+        dayText.text = $"Day {Persistents.Level}";
+    }
 
     // Update is called once per frame
     void Update()
@@ -54,9 +59,6 @@ public class ClockManager : MonoBehaviour
                     ScreensManager.instance.SetActive("shop");
                 else {
 
-                    Persistents.Level = 1;
-                    Persistents.currentScore = 0;
-                    Persistents.upgradeLevels = new int[5];
                     ScreensManager.instance.SetActive("game_over");
                 }
             }

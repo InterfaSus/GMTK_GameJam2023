@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System;
+using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -14,7 +14,11 @@ public class MainMenuManager : MonoBehaviour
 
     void Start() {
 
-        if(Persistents.Level > 1) continueButton.SetActive(true);
+        if(Persistents.Level > 1) {
+
+            continueButton.SetActive(true);
+            continueButton.GetComponent<TextMeshProUGUI>().text = $"Continue Day {Persistents.Level}";
+        }
         else continueButton.SetActive(false);
         StartCoroutine(FadeFromBlack());
     }
