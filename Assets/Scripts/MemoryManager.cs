@@ -54,7 +54,7 @@ public class MemoryManager : MonoBehaviour
 
         while (alpha < 1)
         {
-            alpha += Time.deltaTime * Persistents.memoryFadeSpeed;
+            alpha += Time.deltaTime * Persistents.fadeSpeed;
             BGMusic.volume = Mathf.Lerp(startVolume, volume, alpha);
 
             yield return null;
