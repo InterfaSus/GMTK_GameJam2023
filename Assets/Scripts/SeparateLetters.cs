@@ -13,6 +13,8 @@ public class SeparateLetters : MonoBehaviour
     private Vector3[] directions;
     private bool finishedLoading = false;
 
+    float progress;
+
     public void InitializeLetters(string text) {
         
         textComponent.text = text.Replace(" ", "  ");
@@ -65,10 +67,14 @@ public class SeparateLetters : MonoBehaviour
 
     private void Update() {
 
+        progress = (1 / (((float)Persistents.upgradeLevels[1] + 2) * 200f));
+
+        Debug.Log(progress);
+
         if (finishedLoading) {
             for (int i = 0; i < letterTransforms.Length; i++) {
                 
-                letterTransforms[i].position = Vector3.Lerp(letterTransforms[i].position, letterTransforms[i].position + directions[i], 1.0f / separationDelay * Time.deltaTime * 0.5f * (Persistents.upgradeLevels[1] + 1));
+                letterTransforms[i].position = Vector3.Lerp(letterTransforms[i].position, letterTransforms[i].position + directions[i], progress);
             }
         }
     }
