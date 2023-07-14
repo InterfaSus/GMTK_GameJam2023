@@ -17,8 +17,7 @@ public class MemoryManager : MonoBehaviour
 //Arreglar esto quee esta hardcodeado por ahora
     public float minVolume = 0.1f;
     public float maxVolume = 0.5f;
-    bool isInFront = false;
-
+    
     void Start() {
         LoadRulesMemory(new string[] {});
     }
@@ -27,12 +26,10 @@ public class MemoryManager : MonoBehaviour
 
         if(Input.GetMouseButtonDown(1)) {
             RaiseVolume(true);
-            isInFront = true;
             memoryPanel.transform.SetAsLastSibling();
         }
         else if (Input.GetMouseButtonUp(1)) {
             RaiseVolume(false);
-            isInFront = false;
             memoryPanel.transform.SetAsFirstSibling();
         }
     }
