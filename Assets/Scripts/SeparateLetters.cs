@@ -69,8 +69,6 @@ public class SeparateLetters : MonoBehaviour
 
         progress = (1 / (((float)Persistents.upgradeLevels[1] + 2) * 200f));
 
-        Debug.Log(progress);
-
         if (finishedLoading) {
             for (int i = 0; i < letterTransforms.Length; i++) {
                 
