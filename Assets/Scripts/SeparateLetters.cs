@@ -69,9 +69,7 @@ public class SeparateLetters : MonoBehaviour
 
         progress = (1 / (((float)Persistents.upgradeLevels[1] + 2) * 200f));
 
-        Debug.Log(progress);
-
-        if (finishedLoading) {
+        if (finishedLoading && !Persistents.DidTutorial) {
             for (int i = 0; i < letterTransforms.Length; i++) {
                 
                 letterTransforms[i].position = Vector3.Lerp(letterTransforms[i].position, letterTransforms[i].position + directions[i], progress);

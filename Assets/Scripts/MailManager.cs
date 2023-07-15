@@ -35,6 +35,7 @@ public class MailManager : MonoBehaviour
         UpdateCategoriesNumbers();
         UpdateDisplayList(MailCategory.Inbox);
 
+        if(Persistents.DidTutorial == true)
         StartCoroutine(SendNewMail());
     }
 

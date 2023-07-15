@@ -101,8 +101,6 @@ public class ShopManager : MonoBehaviour
 
         float elapsedTime = 0.0f;
 
-        Debug.Log(elapsedTime);
-
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;

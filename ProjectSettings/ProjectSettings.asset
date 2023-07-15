@@ -154,7 +154,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.Interfasus.Interfasus-GMTK-GameJam2023
+    Standalone: com.Interfasus.JamMail
   buildNumber:
     Bratwurst: 0
     Standalone: 0
