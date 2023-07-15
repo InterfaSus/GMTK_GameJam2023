@@ -17,7 +17,7 @@ public class SeparateLetters : MonoBehaviour
 
     public void InitializeLetters(string text) {
         
-        textComponent.text = text.Replace(" ", "  ");
+        FormatText(text);
 
         letterTransforms = new Transform[textComponent.text.Length];
         originalPositions = new Vector3[textComponent.text.Length];
@@ -54,6 +54,24 @@ public class SeparateLetters : MonoBehaviour
         finishedLoading = true;
     }
 
+    private void FormatText(string text)
+    {        
+        //Insert more spaces where its an space
+        text = text.Replace(" ", "  ");
+
+        //Add "  " spaces between each letter
+        string tempText = " ";
+        for (int i = 0; i < 2*text.Length; i++)
+        {
+            if (i%2 == 0)
+                tempText = tempText + text[i/2];
+            else
+                tempText = tempText + " ";
+        }
+
+        textComponent.text = tempText;
+    }
+
     private Vector2 GetLetterPosition(int index) {
 
         int totalCharacters = textComponent.text.Length;
@@ -66,10 +84,9 @@ public class SeparateLetters : MonoBehaviour
     }
 
     private void Update() {
+        progress =  ((1/300f) * (1/(Mathf.Pow(2, Persistents.upgradeLevels[1] + 1))));
 
-        progress = (1 / (((float)Persistents.upgradeLevels[1] + 2) * 200f));
-
-        if (finishedLoading && !Persistents.DidTutorial) {
+        if (finishedLoading && Persistents.DidTutorial) {
             for (int i = 0; i < letterTransforms.Length; i++) {
                 
                 letterTransforms[i].position = Vector3.Lerp(letterTransforms[i].position, letterTransforms[i].position + directions[i], progress);

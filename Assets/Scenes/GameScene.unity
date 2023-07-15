@@ -19716,8 +19716,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2040229112}
-  - {fileID: 174879724}
   - {fileID: 1569176758}
+  - {fileID: 174879724}
   m_Father: {fileID: 2056049899}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -58963,7 +58963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rulesContainer: {fileID: 347843850}
-  memoryPanel: {fileID: 1605507576}
+  memoryCanvas: {fileID: 1605507576}
   memoryContent: {fileID: 2047999296}
   splitTextPrefab: {fileID: 5563733621563666324, guid: e0a643824fb66d3cbb6dbf58db72a997, type: 3}
   BGMusic: {fileID: 1160541255}
