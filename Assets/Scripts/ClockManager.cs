@@ -22,17 +22,20 @@ public class ClockManager : MonoBehaviour
 
     void Start() {
 
-        dayText.text = $"Day {Persistents.Level}";
+        if(!Persistents.DidTutorial) dayText.text = $"Day 0";
+        else dayText.text = $"Day {Persistents.Level}";
     }
 
     // Update is called once per frame
     void Update()
     {   
         if (!running) return;
-
+        
         if(actualTime <= endTime)
         {
-            currentTime += Time.deltaTime * (timeSpeed - Persistents.upgradeLevels[3] / 2) / 100.0f;
+            float tutorialFactor = 1;
+            if(!Persistents.DidTutorial) tutorialFactor = 0;
+            currentTime += Time.deltaTime * tutorialFactor * (timeSpeed - Persistents.upgradeLevels[3] / 2) / 100.0f;
             actualTime = currentTime + startTime;
 
 
@@ -41,7 +44,6 @@ public class ClockManager : MonoBehaviour
 
             if(timeText.Minute % 15 == 0) clock.text = formatHour;
         }
-
         else
         {   
             if(!alreadyPlayed)

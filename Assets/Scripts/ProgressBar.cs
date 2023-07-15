@@ -32,7 +32,7 @@ public class ProgressBar : MonoBehaviour
             progress = 0.0f;
             loadingStarted = false;
             Browser.instance.FocusTab("ruleList");
-            if(!Persistents.DidTutorial) rulesWindow.GetComponentInChildren<RulesList>().InitRuleList();
+            if(Persistents.DidTutorial) rulesWindow.GetComponentInChildren<RulesList>().InitRuleList();
             loadWindow.SetActive(false);
         }
     }

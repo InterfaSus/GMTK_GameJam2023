@@ -8,7 +8,7 @@ public class MemoryManager : MonoBehaviour
 {   
 
     public GameObject rulesContainer;
-    public GameObject memoryPanel;
+    public GameObject memoryCanvas;
     public GameObject memoryContent;
     public GameObject splitTextPrefab;
 
@@ -26,11 +26,11 @@ public class MemoryManager : MonoBehaviour
 
         if(Input.GetMouseButtonDown(1)) {
             RaiseVolume(true);
-            memoryPanel.transform.SetAsLastSibling();
+            memoryCanvas.transform.SetAsLastSibling();
         }
         else if (Input.GetMouseButtonUp(1)) {
             RaiseVolume(false);
-            memoryPanel.transform.SetAsFirstSibling();
+            memoryCanvas.transform.SetAsFirstSibling();
         }
     }
 

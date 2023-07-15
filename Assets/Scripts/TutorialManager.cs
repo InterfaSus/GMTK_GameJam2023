@@ -50,6 +50,11 @@ public class TutorialManager : MonoBehaviour
     private float defaultTime = 0.0f;
     void Start()
     {
+        if (Persistents.DidTutorial) {
+            tutorialPanel.SetActive(false);
+            return;
+        }
+        
         if(!Persistents.DidTutorial)
         {
             tutorialObjects = new List<List<GameObject>>();
@@ -127,25 +132,26 @@ public class TutorialManager : MonoBehaviour
     int myindex = -1;
     public void GoToNext()
     {
-        if(myindex < 22)
-        {
-            if(myindex != 2 && myindex != 8 && myindex != 11 && myindex != 14 && myindex != 16)
-            ToggleButton();
+        if(!Persistents.DidTutorial)
+            if(myindex < 22 )
+            {
+                if(myindex != 2 && myindex != 8 && myindex != 11 && myindex != 14 && myindex != 16)
+                ToggleButton();
 
-            if(myindex == 8)
-                if (incorrectOption) myindex = 9;
-                else myindex = 10;
-            else if(myindex == 9) myindex = 11;
-            else myindex++;
-        }
-        else
-        {
-            Persistents.DidTutorial = true;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+                if(myindex == 8)
+                    if (incorrectOption) myindex = 9;
+                    else myindex = 10;
+                else if(myindex == 9) myindex = 11;
+                else myindex++;
 
-        SetText(myindex);
-        SetObjectsActive(myindex);
+                SetText(myindex);
+                SetObjectsActive(myindex);
+            }
+            else
+            {
+                Persistents.DidTutorial = true;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
     }
 
     private void ToggleButton()
@@ -247,7 +253,6 @@ public class TutorialManager : MonoBehaviour
 
     private void CallNextEvent()
     {
-        Debug.Log("Event #" + eventCounter);
         switch(eventCounter)
         {
             case 1:
